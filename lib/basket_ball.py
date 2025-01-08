@@ -182,3 +182,73 @@ def game_dict():
             ]
         }
     }
+
+
+
+def num_points_per_game(player_name):
+    game_data = game_dict()
+    for team_key in ["home", "away"]:
+        for player in game_data[team_key]["players"]:
+            if player["name"] == player_name:
+                return player["points_per_game"]
+    return None
+
+
+def player_age(player_name):
+    game_data = game_dict()
+    for team_key in ["home", "away"]:
+        for player in game_data[team_key]["players"]:
+            if player["name"] == player_name:
+                return player["age"]
+    return None
+
+
+def team_colors(team_name):
+    game_data = game_dict()
+    for team_key in ["home", "away"]:
+        team = game_data[team_key]
+        if team ["team_name"] == team_name:
+            return team["colors"]
+    return None 
+
+
+def team_names():
+    game_data = game_dict()
+    home_team_name = game_data["home"]["team_name"]
+    away_team_name = game_data["away"]["team_name"]
+    return [home_team_name, away_team_name]
+
+
+
+def player_numbers(team_name):
+    game_data = game_dict()
+    for team_key in ["home", "away"]:
+        team = game_data[team_key]
+        if team["team_name"] == team_name:
+            player = team["players"]
+            return [player["number"] for player in team["players"]]
+    return[]
+
+
+def player_stats(player_name):
+    game_data = game_dict()
+    for team_key in ["home", "away"]:
+        team = game_data[team_key]
+        for player in team["players"]:
+            if player["name"] == player_name:
+                return {
+                    "name": player["name"],
+                    "number": player["number"],
+                    "position": player["position"],
+                    "points_per_game": player["points_per_game"],
+                    "rebounds_per_game": player["rebounds_per_game"],
+                    "assists_per_game": player["assists_per_game"],
+                    "steals_per_game": player["steals_per_game"],
+                    "blocks_per_game": player["blocks_per_game"],
+                    "career_points": player["career_points"],
+                    "age": player["age"],
+                    "height_inches": player["height_inches"],
+                    "shoe_brand": player["shoe_brand"]
+                }
+    return None
+
